@@ -37,12 +37,12 @@
 const express = require("express")  //first install npm i express
 const app = express();
 const db = require('./db'); //import database connection from db.js
-
+require('dotenv').config(); //to keep the sensitive data or url safe
 
 
 const bodyParser = require('body-parser'); //first install npm i body-parserused,it is used to send the data and extract the body http request 
 app.use(bodyParser.json()); // the body converts the json data into js object and then saves the data into bodyParser.json
-
+const PORT = process.env.PORT || 3000;
 
 //-------------------------------------------------------------------
 // app.get('/',function(req,res){
@@ -81,7 +81,9 @@ const menuRouter = require('./routes/menuRoutes');
 app.use('/person',personRouter );
 app.use('/menu',menuRouter);
 
-app.listen(3000,()=>{
+
+
+app.listen(PORT,()=>{
     console.log('listening on port 3000');
 })
 
